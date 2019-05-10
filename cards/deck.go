@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"strings"
 )
 
 // Create a new type of deck := slice of string
@@ -26,8 +28,16 @@ func (d deck) deal(handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
 
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",\n")
+}
+
 func (d deck) printEl() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
+}
+
+func (d deck) saveToFile(fileName string) error {
+	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 }
