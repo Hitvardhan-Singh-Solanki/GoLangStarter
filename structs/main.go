@@ -41,8 +41,7 @@ func main() {
 	p.getDetails()
 	// This will give us the exact memory address of the
 	// variable which holds the value
-	pPointer := &p
-	pPointer.updateName("Jane")
+	p.updateName("Jane")
 	fmt.Println("++++++++++++++++++++++++++++++++")
 	p.getDetails()
 }
