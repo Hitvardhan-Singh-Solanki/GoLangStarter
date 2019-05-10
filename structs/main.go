@@ -22,8 +22,11 @@ func (p person) getDetails() {
 	fmt.Println("ZipCode: " + strconv.Itoa(p.contactInfo.zip))
 }
 
+// passed by reference
 func (p *person) updateName(newFName string) {
-	p.firstName = newFName
+	// This is pointer to the memory address
+	// * will return the value on the memory address
+	(*p).firstName = newFName
 }
 
 func main() {
@@ -36,7 +39,10 @@ func main() {
 		},
 	}
 	p.getDetails()
-	p.updateName("Jane")
-	fmt.Println("********************")
+	// This will give us the exact memory address of the
+	// variable which holds the value
+	pPointer := &p
+	pPointer.updateName("Jane")
+	fmt.Println("++++++++++++++++++++++++++++++++")
 	p.getDetails()
 }
