@@ -1,11 +1,9 @@
 package main
 
-import "fmt"
-
 func main() {
-	card := newCardVal()
-	fmt.Println(card)
-	printState()
+	cards := deck{newCardVal(), newCardVal()}
+	cards = append(cards, "Six of Spades")
+	cards.printEl()
 }
 
 /**
