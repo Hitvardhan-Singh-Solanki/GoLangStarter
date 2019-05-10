@@ -1,6 +1,7 @@
 package main
 
 func main() {
-	cards := newDeck()
-	cards.saveToFile("cards.log")
+	cards := newDeckFromFile("cards.log")
+	cards.printEl()
+	// cards.saveToFile("cards.log")
 }
