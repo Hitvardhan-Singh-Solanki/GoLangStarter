@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type contactInfo struct {
 	email string
@@ -10,22 +13,30 @@ type contactInfo struct {
 type person struct {
 	firstName string
 	lastName  string
-	contact   contactInfo
+	contactInfo
+}
+
+func (p person) getDetails() {
+	fmt.Println("Person Name: " + p.firstName + " " + p.lastName)
+	fmt.Println("Email: " + p.contactInfo.email)
+	fmt.Println("ZipCode: " + strconv.Itoa(p.contactInfo.zip))
+}
+
+func (p *person) updateName(newFName string) {
+	p.firstName = newFName
 }
 
 func main() {
 	p := person{
 		firstName: "John",
 		lastName:  "Doe",
-		contact: contactInfo{
+		contactInfo: contactInfo{
 			zip:   12312,
 			email: "test@test.com",
 		},
 	}
-	// var p person
-	p.firstName = "Jane"
-	p.lastName = "Doe"
-
-	fmt.Println(p.firstName + " " + p.lastName)
-	fmt.Println(p)
+	p.getDetails()
+	p.updateName("Jane")
+	fmt.Println("********************")
+	p.getDetails()
 }
