@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -20,10 +21,12 @@ func main() {
 		go checkStat(link, c)
 	}
 
-	for i := 0; i < len(links); i++ {
-		fmt.Println(<-c)
+	for l := range c {
+		go func(linkage string) {
+			time.Sleep(2 * time.Second)
+			checkStat(linkage, c)
+		}(l)
 	}
-
 }
 
 func checkStat(link string, c chan string) {
@@ -34,5 +37,5 @@ func checkStat(link string, c chan string) {
 		return
 	}
 	fmt.Println(link, "is live")
-	c <- "OK"
+	c <- link
 }
