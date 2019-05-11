@@ -1,3 +1,4 @@
+// Serial Approach
 package main
 
 import (
